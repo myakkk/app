@@ -25,16 +25,18 @@ jobs:
           pip install flet
           pip install -r requirements.txt
 
+      # ӨЗГЕРТІЛГЕН ЖЕР 1: Нақты версияның орнына 'stable' қолданамыз
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.0'
+          channel: 'stable'
+          cache: true
 
+      # ӨЗГЕРТІЛГЕН ЖЕР 2: "yes" командасы сұраққа автоматты түрде жауап береді
       - name: Build APK
         run: |
-          flet build apk --verbose
+          yes | flet build apk --verbose
 
-      # МЫНА ЖЕР ӨЗГЕРТІЛДІ (v3 -> v4)
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
